@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Interest Calculator</h1>
+<br>
+<p2 style="font-weight: bold;">Use this to calculate interest</p2>
+<br>
+<p1>Input your Starting amount</p1>
+<input id="starting">
+<br>
+<p1>Input Interest Rate</p1>
+<input id="interestrate">
+<br>
+<p1>Input your Goal amount for savings</p1>
+<input id="goal">
+<br>
+<button type="button" onclick="start()">Start!</button>
+<br>
+<p2 style="font-weight: bold;">Results:</p2>
+<br>
+<p2 id="result">Pending...</p2>
+<script>
+
+var text = ""
+function start() {
+    var startamount = document.getElementById("starting").value
+    var interestrate = document.getElementById("interestrate").value / 100
+    var goalamount = document.getElementById("goal").value
+    var x = parseInt(startamount)
+    var prevamount = parseInt(startamount)
+    
+    var newamount = parseInt(startamount)
+    var newinterest = 0
+    var text = ""
+    var days = 0
+    while (x < goalamount) {
+        
+        x = ((x*interestrate)/12)+x
+        days = days + 1
+        
+    }
+    console.log(days)
+    text = text + "Month" + " | " + "Begining Balance" + " | " + "New Interest Rate" + " | " + "End Balance" +"<br>"
+    for (var i=0;i < (days-1);i++) {
+        newinterest = (prevamount*interestrate)/12
+        newamount = newinterest + prevamount
+        text = text + (i+1) + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + " | " + "$"+ prevamount.toFixed(2)  + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + " | " + "$"+ newinterest.toFixed(2)  + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + " | " + "$"+ newamount.toFixed(2)  + "<br>"
+       
+        prevamount = newamount
+        
+    }
+    document.getElementById("result").innerHTML = text
+    document.getElementById("starting").value = ""
+    document.getElementById("interestrate").value = ""
+    document.getElementById("goal").value = ""
+
+}
+
+</script>
+
+</body>
+</html>
